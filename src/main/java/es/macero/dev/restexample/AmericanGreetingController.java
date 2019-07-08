@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -35,4 +36,14 @@ public class AmericanGreetingController {
     public void createAmericanGreeting(@RequestBody AmericanGreeting americanGreeting) {
     	americanGreetings.add(americanGreeting);
     }
+    @GetMapping("/EnableAutoDeployments")
+    public List<String> enableAutoDeployments(@RequestParam String flag){
+    	List<String> list = new ArrayList<>();
+    	if(flag.equalsIgnoreCase("true")) {
+    	list.add("AutomaticDeploymentsEnabled - In Heroku - Click on EnableAutomaticDeployents");
+    	list.add("If you won't select EnableAutomaticDeployments in Heroku - you need to build and deploy");
+    	return list;
+    	}
+    	return Arrays.asList("Please enable the flag in heroku ...");
+    	}
 }
